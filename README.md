@@ -1,4 +1,5 @@
-# Tyrion
+# Tyrion - Word Embedding Autoencoder
+
 
 An autoencoder to calculate word embeddings as mentioned in Lebret/Collobert paper 2015
 

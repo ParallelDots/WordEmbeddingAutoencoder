@@ -1,4 +1,5 @@
-# WordEmbeddingAutoencoder
+# Tyrion
+
 An autoencoder to calculate word embeddings as mentioned in Lebret/Collobert paper 2015
 
 Runs the model mentined in http://arxiv.org/abs/1412.4930 on set of text files in a directory, which can be specified in ETL folder.

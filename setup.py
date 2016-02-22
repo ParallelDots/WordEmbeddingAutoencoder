@@ -3,7 +3,7 @@ from setuptools import setup
 setup(name='tyrion',
       version='0.1',
       description='Word Embedding based on paper by Lebret, Collobert, 2015',
-      url= '',
+      url= 'https://github.com/shashankg7/WordEmbeddingAutoencoder',
       packages=['tyrion'],
       install_requires=['numpy','theano'],
       author=('Muktabh Mayank, Shashank gupta'),

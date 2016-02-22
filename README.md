@@ -23,9 +23,9 @@ To generate word embeddings and to find closest words to a word, use utils modul
 
 >> from tyrion import utils
 
->> embedding = utils.gen_embedding('<word>')
+>> embedding = utils.gen_embedding('word')
 
->> close_words = utils.closest_words('<word>',n=10)
+>> close_words = utils.closest_words('word',n=10)
 
 
 Todo: (Prioritywise)

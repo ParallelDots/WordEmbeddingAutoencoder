@@ -122,7 +122,7 @@ def train():
 
     print "Training proces done, dumping embedding into persistant storage!"
 
-    outfile = open("embeddings.pickle", "w")
+    outfile = open("../embeddings.pickle", "w")
     pickle.dump(wordembeddings, outfile)
     outfile.close()
     print "Training completed! Embedding done."

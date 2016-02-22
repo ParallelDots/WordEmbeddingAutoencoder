@@ -13,5 +13,3 @@ setup(name='tyrion',
                   'License :: OSI Approved :: MIT',
                   'Topic :: Scientific/Engineering :: Artificial Intelligence']
       )
-
-

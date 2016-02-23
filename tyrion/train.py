@@ -1,5 +1,5 @@
 '''
-ETL code for extracting wiki text from wiki xml dump.
+Code to train Word embeddings on given corpus.
 '''
 
 import sys
@@ -13,56 +13,17 @@ import numpy as np
 import argparse
 
 
-# Initialize hyperparamters of the model
-contextSize = 0
-min_count = 0
-folder = ""
-maxnum = 10000
-newdims = 100
-ntimes = 2
-lr = 0.0
-def arg_parser():
-    global contextSize, min_count, folder, maxnum, newdims, ntimes, lr
-    parser = argparse.ArgumentParser(description='Generates word embeddings from a corpus specified by user based on paper by Lebert 2015')
-    parser.add_argument('path', help='Path to folder containing text files to be parsed')
-    parser.add_argument('--context_size', help='Context window size to be considered', type=int)
-    parser.add_argument('--maxnum', help='Maximum context words to be included based on context freq ', type=int)
-    parser.add_argument('--dim', help='Dimension of word vector', type=int)
-    parser.add_argument('--ntimes', help='number of epochs for training', type=int)
-    parser.add_argument('--learning_rate', help='learning rate for driving optimization', type=float)
-    args = parser.parse_args()
-    folder=args.path
-    if args.context_size:
-        contextSize = args.context_size
-    else:
-        contextSize = 5
-    if args.maxnum:
-        maxnum = args.maxnum
-    else:
-        maxnum = 10000
-    if args.dim:
-        newdims = args.dim
-    else:
-        newdims = 100
-    if args.ntimes:
-        ntimes = args.ntimes
-    else:
-        ntimes = 2
-    if args.learning_rate:
-        lr = args.learning_rate
-    else:
-        lr = 0.4
-
-def train():
-    global folder, min_count, newdims, ntimes, maxnum, lr
+def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
+          maxnum=10000, lr=0.4):
+    '''
+    Function to train autoencoder.
+    '''
     lr_decay = 0.95
-    arg_parser()
-    # User will enter wikipedia dump's path
-    # Parameter to remove words below this Frequenc
     pa = ProbArray()
     # Frequency to filter out low freq words
     freq = {}
     filepaths = map(lambda x: folder + "/" + x,os.listdir(folder))
+    print filepaths
     rgx = re.compile("([\w][\w']*\w)")
     # Another iterator to count frequency of words
     print "Pre-processing (clearning garbage words)"
@@ -119,7 +80,7 @@ def train():
 
     print "Training proces done, dumping embedding into persistant storage!"
 
-    outfile = open("../embeddings.pickle", "w")
+    outfile = open("./embeddings.pickle", "w")
     pickle.dump(wordembeddings, outfile)
     outfile.close()
     print "Training completed! Embedding done."

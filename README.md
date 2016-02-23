@@ -2,7 +2,7 @@
 
 An autoencoder to calculate word embeddings as mentioned in Lebret/Collobert paper 2015
 
-Runs the model mentined in http://arxiv.org/abs/1412.4930 on set of text files stored in directory.
+R:uns the model mentined in http://arxiv.org/abs/1412.4930 on set of text files stored in directory.
 
 Requirements:
 
@@ -20,17 +20,17 @@ $ python setup.py install
 
 # Training
 
-To train the model on bunch of text files run following commnands:
+To train the model on bunch of text files run following commnands in python console:
 
->> from tyrion import train
+\>> from tyrion import train
 
->> train.train('/path/to/text/corpus')
+\>> train.train('/path/to/text/corpus')
 
 # Setting hyperparameters
 
 Different hyperparameters are set by default in training module, to set hyperparamters manually use following command while training
 
->> from tyrion import train
+\>> from tyrion import train
 
 >> train.train('/path/to/text/corpus', contextSize=size, min_count=count, newdims=dims, ntimes=ntimes, lr=learningrate)
 

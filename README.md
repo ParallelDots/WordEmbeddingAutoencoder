@@ -12,12 +12,41 @@ Requirements:
 
 3. Scipy http://www.scipy.org/install.html
 
-Usage:
+# Installation 
 
-First run train.py with arguments specified in help, it will generate the embedding file.
-A sample data folder is provided in tyrion folder with very small wiki dump, run train on it to make sure model is generated without bug ( due to small corpus size, it won't give good results in finding closest words, use larger corpus for that)
+To install the package run setup.py file, it will install and include necessary files in system python directory
 
->> python train.py --help
+$ python setup.py install 
+
+# Training
+
+To train the model on bunch of text files run following commnands:
+
+>> from tyrion import train
+
+>> train.train('/path/to/text/corpus')
+
+# Setting hyperparameters
+
+Different hyperparameters are set by default in training module, to set hyperparamters manually use following command while training
+
+>> from tyrion import train
+
+>> train.train('/path/to/text/corpus', contextSize=size, min_count=count, newdims=dims, ntimes=ntimes, lr=learningrate)
+
+Arguments explained:
+
+1. ContextSize is the contex window size used for constructing coocurence matrix
+
+2. min_count is minimum threshold frequency for words, removes garbage words below this frequency
+
+3. newdims is the dimension of embedding desired.
+
+4. ntimes is number of epochs for training model
+
+5. lr is the learning rate to drive optimization routine
+
+# Utility functions
 
 To generate word embeddings and to find closest words to a word, use utils module in tyrion. Ex.
 
@@ -28,7 +57,7 @@ To generate word embeddings and to find closest words to a word, use utils modul
 >> close_words = utils.closest_words('word',n=10)
 
 
-Todo: (Prioritywise)
+# Future work
 
 1. Implement a closely related paper on phrase embeddings (http://arxiv.org/abs/1506.05703) (ICML 2015)
 2. Try implementing AdaGrad ( for optimization )

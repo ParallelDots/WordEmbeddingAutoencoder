@@ -23,7 +23,6 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
     # Frequency to filter out low freq words
     freq = {}
     filepaths = map(lambda x: folder + "/" + x,os.listdir(folder))
-    print filepaths
     rgx = re.compile("([\w][\w']*\w)")
     # Another iterator to count frequency of words
     print "Pre-processing (clearning garbage words)"

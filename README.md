@@ -32,7 +32,7 @@ Different hyperparameters are set by default in training module, to set hyperpar
 
 \>> from tyrion import train
 
->> train.train('/path/to/text/corpus', contextSize=size, min_count=count, newdims=dims, ntimes=ntimes, lr=learningrate)
+\>> train.train('/path/to/text/corpus', contextSize=size, min_count=count, newdims=dims, ntimes=ntimes, lr=learningrate)
 
 Arguments explained:
 
@@ -50,11 +50,11 @@ Arguments explained:
 
 To generate word embeddings and to find closest words to a word, use utils module in tyrion. Ex.
 
->> from tyrion import utils
+\>> from tyrion import utils
 
->> embedding = utils.gen_embedding('word')
+\>> embedding = utils.gen_embedding('word')
 
->> close_words = utils.closest_words('word',n=10)
+\>> close_words = utils.closest_words('word',n=10)
 
 
 # Future work

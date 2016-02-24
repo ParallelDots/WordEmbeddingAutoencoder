@@ -22,6 +22,8 @@ $ python setup.py install
 
 To train the model on bunch of text files run following commnands in python console:
 
+There is a sample data folder in project's folder, that can be used for sanity checking
+
 \>> from tyrion import train
 
 \>> train.train('/path/to/text/corpus')
@@ -29,7 +31,6 @@ To train the model on bunch of text files run following commnands in python cons
 # Setting hyperparameters
 
 Different hyperparameters are set by default in training module, to set hyperparamters manually use following command while training
-
 \>> from tyrion import train
 
 \>> train.train('/path/to/text/corpus', contextSize=size, min_count=count, newdims=dims, ntimes=ntimes, lr=learningrate)

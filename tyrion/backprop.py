@@ -21,13 +21,13 @@ class TrainModel(object):
         self.output = T.dot(self.W1, self.inputs)
         self.recons = T.dot(self.W2, self.output)
         self.totloss = T.sum((self.inputs - self.recons)**2)
-        W1_grad = T.clip(T.grad(self.totloss, self.W1),
+        self.W1_grad = T.clip(T.grad(self.totloss, self.W1),
                          -1*self.threshold, self.threshold)
-        W2_grad = T.clip(T.grad(self.totloss, self.W2),
+        self.W2_grad = T.clip(T.grad(self.totloss, self.W2),
                          -1*self.threshold, self.threshold)
-        updates = [(self.W1, self.W1 - learnrate * W1_grad),
-                   (self.W2, self.W2 - learnrate*W2_grad)]
-        train = theano.function([], self.totloss, updates=updates,
+        self.updates = [(self.W1, self.W1 - learnrate * self.W1_grad),
+                   (self.W2, self.W2 - learnrate * self.W2_grad)]
+        self.train = theano.function([], self.totloss, updates=updates,
                                 allow_input_downcast=True)
 
     def trainonone(self, wordvec):

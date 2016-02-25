@@ -67,7 +67,7 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
     pa.freeze()
     for k in xrange(ntimes):
         for numwordvec in pa.getallwordvecs():
-            tm.trainonone(numwordvec[1],lr)
+            tm.trainonone(numwordvec[1])
         lr /=float(1+k*lr_decay)
 
     wordembeddings = {}

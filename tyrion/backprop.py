@@ -27,7 +27,7 @@ class TrainModel(object):
                          -1*self.threshold, self.threshold)
         self.updates = [(self.W1, self.W1 - learnrate * self.W1_grad),
                    (self.W2, self.W2 - learnrate * self.W2_grad)]
-        self.train = theano.function([], self.totloss, updates=updates,
+        self.train = theano.function([], self.totloss, updates=self.updates,
                                 allow_input_downcast=True)
 
     def trainonone(self, wordvec):

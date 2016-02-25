@@ -20,21 +20,19 @@ class TrainModel(object):
         self.totloss = T.sum((self.inputs- self.recons)**2)
 
     def trainonone(self, wordvec, learnrate=0.4):
-	self.inputs.set_value(wordvec)
-        W1_grad = T.grad(self.totloss,self.W1)
-	temp = T.set_subtensor(W1_grad[(W1_grad > self.threshold).nonzero()], self.threshold)
-        W1_upd = T.set_subtensor(temp[(temp < -1*self.threshold).nonzero()], -1*self.threshold)
-	W2_grad = T.grad(self.totloss, self.W2)
-	temp = T.set_subtensor(W2_grad[(W2_grad > self.threshold).nonzero()], self.threshold)
-        W2_upd = T.set_subtensor(temp[(temp < -1*self.threshold).nonzero()], -1*self.threshold)
-        updates = [(self.W1, self.W1 - learnrate*W1_upd), (self.W2, self.W2- learnrate*W2_upd)]
+        self.inputs.set_value(wordvec)
+        # Gradients w.r.t paramters with values clipped in range (-1*threshold,
+        # threshold)
+        W1_grad = T.clip(T.grad(self.totloss,self.W1), -1*self.threshold, self.threshold)
+        W2_grad = T.clip(T.grad(self.totloss, self.W2), -1*self.threshold, self.threshold)
+        updates = [(self.W1, self.W1 - learnrate * W1_grad), (self.W2, self.W2- learnrate*W2_grad)]
         train = theano.function([], self.totloss, updates=updates, allow_input_downcast=True)
         self.loss = train()
         print "Loss incurred : ",self.loss
 
     def getoutput(self, wordvec):
-	# Returns the embedding given a word (calculate output W1*input
-	self.inputs.set_value(wordvec)
-	genembedding = self.output.eval()
-	return genembedding
+        # Returns the embedding given a word (calculate output W1*input
+        self.inputs.set_value(wordvec)
+        genembedding = self.output.eval()
+        return genembedding
 

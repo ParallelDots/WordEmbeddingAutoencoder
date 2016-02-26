@@ -2,7 +2,9 @@
 
 An autoencoder to calculate word embeddings as mentioned in Lebret/Collobert paper 2015
 
-R:uns the model mentined in http://arxiv.org/abs/1412.4930 on set of text files stored in directory.
+Runs the model mentined in http://arxiv.org/abs/1412.4930 on set of text files stored in directory on GPU
+
+With GPU support code is 5-8x faster than it's CPU version. 
 
 Requirements:
 

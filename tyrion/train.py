@@ -49,15 +49,15 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
         text = open(filepath).read().lower()
         words = re.findall(rgx, text)
         N = len(words)
-        temp = [' '] * (N + 2 * contextSize)
+        temp = [' '] * (N +  contextSize)
         temp[contextSize : (contextSize + N)] = words
         words = temp
         for i in xrange(contextSize, (contextSize + N)):
             # Filter out garbage words"
             if words[i] not in garbageWords:
             # Include context size specified by user
-                for j in xrange(i-contextSize, i + contextSize+1):
-                    if i!=j and words[i] != ' ' and words[j] != ' ':
+                for j in xrange(i-contextSize, i):
+                    if words[i] != ' ' and words[j] != ' ':
                             pa.addcontext(words[j], words[i])
                             pa.addcontext(words[i], words[j])
 

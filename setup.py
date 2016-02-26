@@ -9,7 +9,8 @@ setup(name='tyrion',
       author=('Muktabh Mayank, Shashank gupta'),
       author_email=('muktabh@paralleldots.com,  h20104198@pilani.bits-pilani.ac.in'),
       license='MIT',
-      classifier=['Development Status :: 3 - Alpha',
-                  'License :: OSI Approved :: MIT',
-                  'Topic :: Scientific/Engineering :: Artificial Intelligence']
+      classifiers=[
+          'Development Status :: 3 - Alpha',
+          'License :: OSI Approved :: MIT License',
+          'Topic :: Scientific/Engineering :: Artificial Intelligence']
       )

@@ -16,9 +16,19 @@ Requirements:
 
 # Installation 
 
-To install the package run setup.py file, it will install and include necessary files in system python directory
+To install the package follow the instructions mentioned below 
+
+# Install from source 
+
+To install the package from source run setup.py file, it will install and include necessary files in system python directory
 
 $ python setup.py install 
+
+# Installtion from pip
+
+Tyrion can also be install from pip. Run following command from console
+
+$ pip install tyrion
 
 # Training
 

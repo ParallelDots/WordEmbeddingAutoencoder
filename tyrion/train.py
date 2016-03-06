@@ -11,13 +11,14 @@ import json
 import os
 import numpy as np
 import argparse
-
+import time
 
 def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
           maxnum=10000, lr=0.4):
     '''
     Function to train autoencoder.
     '''
+    t = time.time()
     lr_decay = 0.95
     pa = ProbArray()
     # Frequency to filter out low freq words
@@ -83,6 +84,7 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
     pickle.dump(wordembeddings, outfile)
     outfile.close()
     print "Training completed! Embedding done."
+    print "time is %f" % (time.time()-t)
 
 if __name__ == "__main__":
     train()

@@ -2,7 +2,9 @@
 
 An autoencoder to calculate word embeddings as mentioned in Lebret/Collobert paper 2015
 
-R:uns the model mentined in http://arxiv.org/abs/1412.4930 on set of text files stored in directory.
+Runs the model mentined in http://arxiv.org/abs/1412.4930 on set of text files stored in directory on GPU
+
+With GPU support code is 5-8x faster than it's CPU version. 
 
 Requirements:
 
@@ -14,9 +16,19 @@ Requirements:
 
 # Installation 
 
-To install the package run setup.py file, it will install and include necessary files in system python directory
+To install the package follow the instructions mentioned below 
+
+# Install from source 
+
+To install the package from source run setup.py file, it will install and include necessary files in system python directory
 
 $ python setup.py install 
+
+# Installtion from pip
+
+Tyrion can also be install from pip. Run following command from console
+
+$ pip install tyrion
 
 # Training
 

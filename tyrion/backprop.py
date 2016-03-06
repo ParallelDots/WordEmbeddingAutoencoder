@@ -13,7 +13,7 @@ class TrainModel(object):
     def __init__(self, maxnum, reduced_dims, learnrate=0.4):
         self.threshold = 1e-2
         # Input variable (equivalent to dummyword in original implementation)
-        self.inputs = theano.shared(np.zeros((maxnum, 1)))
+        self.inputs = theano.shared(np.zeros((maxnum, 1), dtype=np.float32))
         self.W1 = theano.shared((rng.randn(reduced_dims, maxnum)*0.1)
                                 .astype(theano.config.floatX), name='W1')
         self.W2 = theano.shared((rng.randn(maxnum, reduced_dims)*0.1).astype
@@ -31,6 +31,7 @@ class TrainModel(object):
                                 allow_input_downcast=True)
 
     def trainonone(self, wordvec):
+        wordvec = np.array(wordvec, dtype=np.float32)
         self.inputs.set_value(wordvec)
         # Gradients w.r.t paramters with values clipped in range (-1*threshold,
         # threshold)

@@ -54,12 +54,12 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
         words = temp
         for i in xrange(contextSize, (contextSize + N)):
             # Filter out garbage words"
-            if words[i] not in garbageWords:
+            #if words[i] not in garbageWords:
             # Include context size specified by user
-                for j in xrange(i-contextSize, i):
-                    if words[i] != ' ' and words[j] != ' ':
-                            pa.addcontext(words[j], words[i])
-                            pa.addcontext(words[i], words[j])
+            for j in xrange(i-contextSize, i):
+                if words[i] != ' ' and words[j] != ' ':
+                        pa.addcontext(words[j], words[i])
+                        pa.addcontext(words[i], words[j])
 
     print "Co-occurence matrix generated"
     print "Starting training"

@@ -1,14 +1,13 @@
 from collections import defaultdict,Counter
-import numpy as np 
+import numpy as np
 class WordNumRelation(object):
 	"""docstring for WordNumRelation
-	Holds 2 dictionary to return a number corresponding to word and a word related to a number 
+	Holds 2 dictionary to return a number corresponding to word and a word related to a number
 	"""
 	def __init__(self):
 		self.maxnum = 0
 		self.W2N = {}
 		self.N2W = {}
-
 
 	def getNum(self,word,training=False):
 		if self.W2N.has_key(word):
@@ -33,7 +32,7 @@ def takezero():
 
 class ProbArray(object):
 	"""docstring for ProbArray"""
-	def __init__(self,topncontextwords = 20000):
+	def __init__(self,topncontextwords = 10000):
 		self.wordcooccurance = defaultdict(dict)
 		self.wordcount = defaultdict(takezero)
 		self.wordnumrelation = WordNumRelation()
@@ -59,11 +58,11 @@ class ProbArray(object):
 		for (wordnum,occur) in mcw:
 			self.topwordnums.append((wordnum,occur))
 		self.frozen = True
-		
+
 	def makevectorfornum(self,num,topn=True):
 		if not topn:
 			count = float(self.wordcount[num])
-			probarray = np.zeros((self.wordnumrelation.maxnum,1))
+			probarray = np.zeros((self.wordnumrelation.maxnum,1), dtype=float32)
 			for (num2,times) in self.wordcooccurance[num].items():
 				probarray[num2] = times/count
 			return np.sqrt(probarray)
@@ -71,7 +70,7 @@ class ProbArray(object):
 			if not self.frozen:
 				raise Exception("Freeze top words first, run obj.freeze()")
 			count = float(self.wordcount[num])
-			probarray = np.zeros((self.topN,1))
+			probarray = np.zeros((self.topN,1), dtype=np.float32)
 			for (numinarr,(num1,count)) in enumerate(self.topwordnums):
 				if self.wordcooccurance[num].has_key(num1):
 					times = self.wordcooccurance[num][num1]
@@ -79,7 +78,7 @@ class ProbArray(object):
 					times = 0
 				probarray[numinarr] = times/count
 			return np.sqrt(probarray)
-		
+
 	def makevector(self,word):
 		num = self.wordnumrelation.getNum(word)
 		if num is None:
@@ -89,6 +88,3 @@ class ProbArray(object):
 	def getallwordvecs(self):
 		for num in self.wordcooccurance.keys():
 			yield (num,self.makevectorfornum(num))
-
-
-

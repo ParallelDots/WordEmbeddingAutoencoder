@@ -36,7 +36,7 @@ class TrainModel(object):
         # Gradients w.r.t paramters with values clipped in range (-1*threshold,
         # threshold)
         self.loss = self.train()
-        print "Loss incurred : ", self.loss
+        print ("Loss incurred : ", self.loss)
 
     def getoutput(self, wordvec):
         # Returns the embedding given a word (calculate output W1*input

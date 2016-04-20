@@ -1,5 +1,5 @@
 import heapq,random
-import cPickle as pickle
+import pickle
 import numpy as np
 from scipy.spatial.distance import cosine
 
@@ -12,7 +12,7 @@ def gen_embedding(word):
         embeddings = pickle.load(f)
         return embeddings[word]
     except Exception as e:
-        print "Exception: Model file not found, please train the model first by runing train"
+        print ("Exception: Model file not found, please train the model first by runing train")
 
 def closest_words(word,topn=10):
     '''
@@ -29,5 +29,5 @@ def closest_words(word,topn=10):
         closest_words = heapq.nlargest(topn, closest)
         return closest_words
     except Exception as e:
-        print "Exception: Model file not found, please train the model by running train function"
+        print ("Exception: Model file not found, please train the model by running train function")
 

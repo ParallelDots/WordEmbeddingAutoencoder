@@ -4,6 +4,7 @@ Re-implementation of Word Embedding in theano
 import numpy as np
 import theano
 from theano import tensor as T
+from compatibility import range, pickle
 
 
 rng = np.random

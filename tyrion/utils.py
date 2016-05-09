@@ -1,5 +1,5 @@
 import heapq,random
-import pickle
+from compatibility import range, pickle
 import numpy as np
 from scipy.spatial.distance import cosine
 

@@ -19,7 +19,8 @@ def closest_words(word,topn=10):
     Returns top 10 closest words to word provided by user.
     '''
     try:
-        embeddings = pickle.load(open("./embeddings.pickle"))
+        with open("./embeddings.pickle", "rb") as f:
+            embeddings = pickle.load(f)
         words = embeddings.keys()
         closest = []
         # Embedding of word provided by user

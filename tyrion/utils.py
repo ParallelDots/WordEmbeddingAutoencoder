@@ -8,8 +8,8 @@ def gen_embedding(word):
     Generates embedding of the word from the model trained.
     '''
     try:
-        f = open('./embeddings.pickle')
-        embeddings = pickle.load(f)
+        with open('./embeddings.pickle', 'rb') as f:
+            embeddings = pickle.load(f)
         return embeddings[word]
     except Exception as e:
         print ("Exception: Model file not found, please train the model first by runing train")

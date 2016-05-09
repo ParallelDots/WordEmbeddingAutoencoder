@@ -1,5 +1,6 @@
 from collections import defaultdict,Counter
 import numpy as np
+from compatibility import range, pickle
 class WordNumRelation(object):
 	"""docstring for WordNumRelation
 	Holds 2 dictionary to return a number corresponding to word and a word related to a number

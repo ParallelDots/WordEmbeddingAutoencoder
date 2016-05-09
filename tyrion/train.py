@@ -83,9 +83,8 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
 
     print ("Training proces done, dumping embedding into persistant storage!")
 
-    open(r'./embeddings.pickle', "wb")
-    pickle.dump(wordembeddings, outfile)
-    outfile.close()
+    with open(r'./embeddings.pickle', "wb") as outfile:
+        pickle.dump(wordembeddings, outfile)
     print ("Training completed! Embedding done.")
     print ("time is %f" % (time.time()-t))
 

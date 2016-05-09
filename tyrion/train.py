@@ -5,7 +5,7 @@ Code to train Word embeddings on given corpus.
 import sys
 from backprop import TrainModel
 from probarray import ProbArray
-import pickle
+from compatibility import range, pickle
 import re
 import json
 import os

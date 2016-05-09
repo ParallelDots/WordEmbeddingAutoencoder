@@ -1,5 +1,6 @@
 from collections import defaultdict,Counter
 import numpy as np
+from compatibility import range, pickle
 class WordNumRelation(object):
 	"""docstring for WordNumRelation
 	Holds 2 dictionary to return a number corresponding to word and a word related to a number
@@ -10,7 +11,7 @@ class WordNumRelation(object):
 		self.N2W = {}
 
 	def getNum(self,word,training=False):
-		if self.W2N.has_key(word):
+		if word in self.W2N:
 			return self.W2N[word]
 		elif training:
 			self.W2N[word] = self.maxnum
@@ -22,7 +23,7 @@ class WordNumRelation(object):
 			return None
 
 	def getWord(self,num):
-		if self.N2W.has_key(num):
+		if num in self.N2W:
 			return self.N2W[num]
 		else:
 			return None
@@ -45,7 +46,7 @@ class ProbArray(object):
 		""" Stores values so as to calculate P(w,t)/P(w,t-1) later """
 		prenum = self.wordnumrelation.getNum(preword,True)
 		postnum = self.wordnumrelation.getNum(postword,True)
-		if self.wordcooccurance[prenum].has_key(postnum):
+		if postnum in self.wordcooccurance[prenum]:
 			self.wordcooccurance[prenum][postnum]+=1
 		else:
 			self.wordcooccurance[prenum][postnum]=1
@@ -72,7 +73,7 @@ class ProbArray(object):
 			count = float(self.wordcount[num])
 			probarray = np.zeros((self.topN,1), dtype=np.float32)
 			for (numinarr,(num1,count)) in enumerate(self.topwordnums):
-				if self.wordcooccurance[num].has_key(num1):
+				if num1 in self.wordcooccurance[num]:
 					times = self.wordcooccurance[num][num1]
 				else:
 					times = 0

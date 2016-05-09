@@ -4,6 +4,7 @@ Re-implementation of Word Embedding in theano
 import numpy as np
 import theano
 from theano import tensor as T
+from compatibility import range, pickle
 
 
 rng = np.random
@@ -36,7 +37,7 @@ class TrainModel(object):
         # Gradients w.r.t paramters with values clipped in range (-1*threshold,
         # threshold)
         self.loss = self.train()
-        print "Loss incurred : ", self.loss
+        print ("Loss incurred : ", self.loss)
 
     def getoutput(self, wordvec):
         # Returns the embedding given a word (calculate output W1*input

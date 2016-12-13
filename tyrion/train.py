@@ -19,7 +19,6 @@ DATA_PATH = sys.argv[2]
 
 config_file = open(CONFIG_PATH, 'r')
 CONFIG = json.load(config_file)
-print(CONFIG)
 backend = CONFIG['backend']
 contextSize = CONFIG['contextSize']
 min_count = CONFIG['min_count']
@@ -57,7 +56,6 @@ def train(folder):
                 freq[tokens[i]] += 1
             else:
                 freq[tokens[i]] = 1
-    pdb.set_trace()
 
     # Sort the frequencies storing in (freq, token) pairs and prune words with freq < min_count
     tokenFreq = sorted(freq.items(), key = lambda x: x[1])

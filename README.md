@@ -12,9 +12,7 @@ Requirements:
 
 1. Numpy 
 
-2. Theano 
-
-3. Tensorflow 
+2. Tensorflow (or) Theano 
 
 3. Scipy 
 

@@ -1,0 +1,9 @@
+{
+	"backend": "tf",
+	"contextSize": 5,
+	"min_count": 100,
+	"lr": 0.001,
+	"ntimes": 1,
+	"newdims": 100,
+	"maxnum": 10000
+}

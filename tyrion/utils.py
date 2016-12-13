@@ -30,5 +30,5 @@ def closest_words(word,topn=10):
         closest_words = heapq.nlargest(topn, closest)
         return closest_words
     except Exception as e:
-        print ("Exception: Model file not found, please train the model by running train function")
+        print ("Exception: Check if model file is present, if not them train the model first, if present, then vocabulary issue, queried word not present in vocab")
 

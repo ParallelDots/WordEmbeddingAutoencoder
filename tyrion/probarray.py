@@ -63,7 +63,7 @@ class ProbArray(object):
 	def makevectorfornum(self,num,topn=True):
 		if not topn:
 			count = float(self.wordcount[num])
-			probarray = np.zeros((self.wordnumrelation.maxnum,1), dtype=float32)
+			probarray = np.zeros((self.wordnumrelation.maxnum,1))
 			for (num2,times) in self.wordcooccurance[num].items():
 				probarray[num2] = times/count
 			return np.sqrt(probarray)
@@ -71,7 +71,7 @@ class ProbArray(object):
 			if not self.frozen:
 				raise Exception("Freeze top words first, run obj.freeze()")
 			count = float(self.wordcount[num])
-			probarray = np.zeros((self.topN,1), dtype=np.float32)
+			probarray = np.zeros((self.topN,1))
 			for (numinarr,(num1,count)) in enumerate(self.topwordnums):
 				if num1 in self.wordcooccurance[num]:
 					times = self.wordcooccurance[num][num1]

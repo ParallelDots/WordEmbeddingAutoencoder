@@ -3,7 +3,6 @@ Code to train Word embeddings on given corpus.
 '''
 
 import sys
-from backprop import TrainModel
 from probarray import ProbArray
 from compatibility import range, pickle
 import re
@@ -14,8 +13,28 @@ import argparse
 import time
 import pdb
 
-def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
-          maxnum=10000, lr=0.4):
+
+CONFIG_PATH = sys.argv[1]
+DATA_PATH = sys.argv[2]
+
+config_file = open(CONFIG_PATH, 'r')
+CONFIG = json.load(config_file)
+print(CONFIG)
+backend = CONFIG['backend']
+contextSize = CONFIG['contextSize']
+min_count = CONFIG['min_count']
+lr = CONFIG['lr']
+ntimes = CONFIG['ntimes']
+newdims = CONFIG['newdims']
+maxnum = CONFIG['maxnum']
+# import theano/tensorflow depending on the backend set by user
+if backend == 'tf':
+    from backprop_tf import TrainModel
+elif backend == 'th':
+    from backprop_th import TrainModel
+
+
+def train(folder):
     '''
     Function to train autoencoder.
     '''
@@ -67,18 +86,19 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
 
     print ("Co-occurence matrix generated")
     print ("Starting training")
-    tm = TrainModel(maxnum, newdims)
+    tm = TrainModel(maxnum, newdims, lr)
     pa.freeze()
-    for k in range(ntimes):
-        for numwordvec in pa.getallwordvecs():
-            tm.trainonone(numwordvec[1])
-        lr /=float(1+k*lr_decay)
+    tm.trainonone(pa, ntimes)
+    #lr /=float(1+k*lr_decay)
 
     wordembeddings = {}
     for numwordvec in pa.getallwordvecs():
         (num, wordvec) = numwordvec
         word = pa.wordnumrelation.getWord(num)
-        embedding = tm.getoutput(wordvec)
+        if backend == 'tf':
+            embedding = tm.getoutput(wordvec, './embedding.chk')
+        else:
+            embedding = tm.getoutput(wordvec)
         wordembeddings[word] = embedding
 
     print ("Training proces done, dumping embedding into persistant storage!")
@@ -89,4 +109,4 @@ def train(folder,contextSize=5,min_count=100, newdims=100, ntimes=2,
     print ("time is %f" % (time.time()-t))
 
 if __name__ == "__main__":
-    train()
+    train(DATA_PATH)

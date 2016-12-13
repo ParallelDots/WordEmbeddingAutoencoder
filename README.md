@@ -4,15 +4,19 @@ An autoencoder to calculate word embeddings as mentioned in Lebret/Collobert pap
 
 Runs the model mentined in http://arxiv.org/abs/1412.4930 on set of text files stored in directory on GPU
 
+Supports both theano and tensorflow implementation
+
 With GPU support code is 5-8x faster than it's CPU version. 
 
 Requirements:
 
-1. Numpy http://www.numpy.org/
+1. Numpy 
 
-2. Theano http://deeplearning.net/software/theano/install.html
+2. Theano 
 
-3. Scipy http://www.scipy.org/install.html
+3. Tensorflow 
+
+3. Scipy 
 
 # Installation 
 
@@ -24,7 +28,7 @@ To install the package from source run setup.py file, it will install and includ
 
 $ python setup.py install 
 
-# Installtion from pip
+# Installtion from pip (currently not supported !! )
 
 Tyrion can also be install from pip. Run following command from console
 
@@ -32,22 +36,24 @@ $ pip install tyrion
 
 # Training
 
+You have an option to choose the backend to train the model on (theano/tensorflow). To select a backend, adjust the backend flag in config.json file supplied along with the code. 
+
+To set theano backend, change "backend" to 'th'.
+
+To set tensorflow backend, change "backend" to 'tf'.
+
+To set parameters of the model, like learning rate, context window size etc. change the appropriate fields in the config file.
+
 To train the model on bunch of text files run following commnands in python console:
 
 There is a sample data folder in project's folder, that can be used for sanity checking
 
-\>> from tyrion import train
-
-\>> train.train('/path/to/text/corpus')
+> python train.py CONFIG_PATH DATADIR_PATH
 
 # Setting hyperparameters
 
-Different hyperparameters are set by default in training module, to set hyperparamters manually use following command while training
-\>> from tyrion import train
+Different hyperparameters are set by default in training module, to set hyperparamters manually follow the instruction in the previous section. Some arguments explained are:
 
-\>> train.train('/path/to/text/corpus', contextSize=size, min_count=count, newdims=dims, ntimes=ntimes, lr=learningrate)
-
-Arguments explained:
 
 1. ContextSize is the contex window size used for constructing coocurence matrix
 
@@ -73,4 +79,3 @@ To generate word embeddings and to find closest words to a word, use utils modul
 # Future work
 
 1. Implement a closely related paper on phrase embeddings (http://arxiv.org/abs/1506.05703) (ICML 2015)
-2. Try implementing AdaGrad ( for optimization )

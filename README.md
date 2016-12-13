@@ -28,7 +28,7 @@ To install the package from source run setup.py file, it will install and includ
 
 $ python setup.py install 
 
-# Installtion from pip (currently not supported !! )
+# Installation from pip (currently not supported !! )
 
 Tyrion can also be install from pip. Run following command from console
 

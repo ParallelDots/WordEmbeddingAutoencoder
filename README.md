@@ -72,8 +72,3 @@ To generate word embeddings and to find closest words to a word, use utils modul
 \>> embedding = utils.gen_embedding('word')
 
 \>> close_words = utils.closest_words('word',n=10)
-
-
-# Future work
-
-1. Implement a closely related paper on phrase embeddings (http://arxiv.org/abs/1506.05703) (ICML 2015)
